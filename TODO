@@ -1,0 +1,17 @@
+
+Final Project Web Frontend Reactjs ini anda diminta untuk membuat web app dengan syarat berikut ini:
+  ☐ Web App wajib menggunakan Ant Design atau yang sejenisnya (Core UI, Material UI, dsb.) @started(20-10-21 07:01)
+  ✔ wajib menggunakan repository baru untuk final project untuk namanya “FP-Sanbercode-Reactjs-Batch18” @done(20-10-21 07:02)
+  ☐ wajib di deploy melalui netlify agar nantinya bisa digunakan
+  ☐ wajib ada function component, class component, state, hooks, context, react-router dom dan axios
+  ☐ Terdapat header, sidebar, footer dan content component
+  ☐ terdapat fitur login, register dan logout, dan ganti password
+  ☐ membuat halaman list movie dan review movie (detail movie dengan parameter id) dengan menampilkan gambar movie
+  ☐ membuat halaman list game dan detail game dengan menampilkan gambar game
+  ☐ membuat fitur delete data game dan data movie
+  ☐ membuat halaman data game dan list game
+  ☐ membuat halaman table game dan table movie
+  ☐ membuat filter berdasarkan minimal dari 3 field table dan search berdasarkan nama pada table game dan table movie
+  ☐ membuat fitur create dan edit movie atau game dengan route yang berbeda (misal url edit movie/edit/ID, untuk create urlnya movie/create)
+  ☐ membuat sort tiap field-field dalam tabel
+  ☐ jika ingin menambahkan fitur lain di persilahkan
