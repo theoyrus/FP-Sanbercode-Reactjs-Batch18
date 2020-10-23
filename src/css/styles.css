@@ -1,0 +1,39 @@
+#components-layout-demo-fixed .logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px 24px 16px 0;
+    float: left;
+}
+
+.site-layout .site-layout-background {
+    background: #fff;
+}
+
+.logo {
+    width: 150px;
+    height: 70px;
+    background: #faad14;
+    margin: 16px 28px 16px 0;
+    float: left;
+}
+
+.site-layout-background {
+    background: #fff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin: 0px 0px;
+    padding: 10px;
+    border-radius: 0 0 50px 0px;
+}
+
+.ant-card-meta-title {
+    white-space: pre-wrap;
+}
+
+.ant-layout-header {
+    padding: unset;
+}

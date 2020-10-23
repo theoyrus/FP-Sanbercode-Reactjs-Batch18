@@ -2,6 +2,7 @@ import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import 'antd/dist/antd.css';
+import './css/styles.css';
 import Routes from './Route'
 import { AuthProvider } from './AuthContext'
 
