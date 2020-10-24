@@ -5,7 +5,9 @@ Final Project Web Frontend Reactjs ini anda diminta untuk membuat web app dengan
   ☐ wajib di deploy melalui netlify agar nantinya bisa digunakan
   ✔ wajib ada function component, class component, state, hooks, context, react-router dom dan axios @done(20-10-22 05:26)
   ✔ Terdapat header, sidebar, footer dan content component @done(20-10-21 22:32)
-  ☐ terdapat fitur login, register dan logout, dan ganti password
+  ✔ terdapat fitur register @done(20-10-24 07:28)
+  ☐ login dan logout
+  ☐ ganti password
   ✔ membuat halaman list movie @done(20-10-22 17:18)
   ✔ review movie (detail movie dengan parameter id) dengan menampilkan gambar movie @done(20-10-22 22:58)
   ✔ membuat halaman list game @done(20-10-22 17:18)

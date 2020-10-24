@@ -29,7 +29,7 @@ const Routes = () => {
                         <Route exact path="/games"><Games /></Route>
                         <Route path="/game/:id/:name"><GameDetail /></Route>
                         {/* <Route path="/movie-editor"><MovieEditor/> </Route> */}
-                        {/* <Route path="/login"><Login /></Route> */}
+                        <Route path="/login"><Login /></Route>
                     </Main>
                 </Route>
             </Switch>
