@@ -16,10 +16,11 @@ import MovieForm from './components/MovieEditor'
 import GameList from './components/GameList'
 import GameForm from './components/GameEditor'
 import Login from './components/Login'
+import Profile from './components/Profile'
 
 const Routes = () => {
-    const { AppAuthContext } = useContext(AuthContext)
-    const [isAuth, setAuth] = useState(AppAuthContext)
+    const [auth, setAuth] = useContext(AuthContext)
+    let isLogin = (auth !== null && auth !== '' && auth.hasOwnProperty('token')) ? true : false
 
     return (
         <Router>
@@ -31,23 +32,26 @@ const Routes = () => {
                         <Route path="/movie/:id/:title"><MovieDetail /></Route>
                         <Route exact path="/games"><Games /></Route>
                         <Route path="/game/:id/:name"><GameDetail /></Route>
-                        <PrivateRoute exact path="/manage-movie" isAuth>
+                        <PrivateRoute exact path="/manage-movie" isAuth={isLogin}>
                             <MovieList />
                         </PrivateRoute>
-                        <PrivateRoute path="/manage-movie/edit/:id" isAuth>
+                        <PrivateRoute path="/manage-movie/edit/:id" isAuth={isLogin}>
                             <MovieForm />
                         </PrivateRoute>
-                        <PrivateRoute exact path="/manage-movie/add" isAuth>
+                        <PrivateRoute exact path="/manage-movie/add" isAuth={isLogin}>
                             <MovieForm />
                         </PrivateRoute>
-                        <PrivateRoute exact path="/manage-game" isAuth>
+                        <PrivateRoute exact path="/manage-game" isAuth={isLogin}>
                             <GameList />
                         </PrivateRoute>
-                        <PrivateRoute path="/manage-game/edit/:id" isAuth>
+                        <PrivateRoute path="/manage-game/edit/:id" isAuth={isLogin}>
                             <GameForm />
                         </PrivateRoute>
-                        <PrivateRoute exact path="/manage-game/add" isAuth>
+                        <PrivateRoute exact path="/manage-game/add" isAuth={isLogin}>
                             <GameForm />
+                        </PrivateRoute>
+                        <PrivateRoute exact path="/profile" isAuth={isLogin}>
+                            <Profile />
                         </PrivateRoute>
                         <Route path="/login"><Login /></Route>
                     </Main>

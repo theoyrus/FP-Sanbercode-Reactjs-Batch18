@@ -55,6 +55,7 @@ const LoginForm = (params) => {
                 setRespon('success')
                 setTimeout(() => {
                     history.push('/')
+                    history.go(0)
                 }, 2000)
             })
             .catch(err => {
@@ -64,31 +65,31 @@ const LoginForm = (params) => {
 
     return (
         <>
-        {
-            respon === 'success' && (
-                <Result
-                    status="success"
-                    title="Successfully Login"
-                    subTitle="Please wait :)"
-                    extra={[
-                        <>
-                        </>,
-                    ]}
-                />
-            )
-        }
-        {
-            respon === 'fail' && (
-                <Result
-                    status="warning"
-                    title="Please check your login data :("
-                    extra={[
-                        <>
-                        </>,
-                    ]}
-                />
-            )
-        }
+            {
+                respon === 'success' && (
+                    <Result
+                        status="success"
+                        title="Successfully Login"
+                        subTitle="Please wait :)"
+                        extra={[
+                            <>
+                            </>,
+                        ]}
+                    />
+                )
+            }
+            {
+                respon === 'fail' && (
+                    <Result
+                        status="warning"
+                        title="Please check your login data :("
+                        extra={[
+                            <>
+                            </>,
+                        ]}
+                    />
+                )
+            }
             <Form
                 name="login-form"
                 className="login-form"

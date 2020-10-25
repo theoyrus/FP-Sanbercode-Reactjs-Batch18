@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Layout, Menu, Image } from 'antd';
 import imgLogo from '../img/logo.png'
 import { AuthContext } from '../AuthContext'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useHistory, useLocation } from 'react-router-dom'
 
 const { Header } = Layout;
 const HeaderLayout = () => {
@@ -10,6 +10,7 @@ const HeaderLayout = () => {
     const [auth, setAuth] = useContext(AuthContext)
     let isLogin = (auth !== null && auth !== '' && auth.hasOwnProperty('token')) ? true : false
     console.log(isLogin)
+    const history = useHistory()
 
     const location = useLocation()
     console.log(location)
@@ -17,6 +18,8 @@ const HeaderLayout = () => {
     const handleLogout = () => {
         localStorage.removeItem('authData')
         setAuth(false)
+        history.push('/')
+        history.go(0)
     }
 
     let selectedKeys = location.pathname
