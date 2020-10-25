@@ -13,6 +13,8 @@ import Games from './components/Games'
 import GameDetail from './components/GameDetail'
 import MovieList from './components/MovieList'
 import MovieForm from './components/MovieEditor'
+import GameList from './components/GameList'
+import GameForm from './components/GameEditor'
 import Login from './components/Login'
 
 const Routes = () => {
@@ -38,7 +40,15 @@ const Routes = () => {
                         <PrivateRoute exact path="/manage-movie/add" isAuth>
                             <MovieForm />
                         </PrivateRoute>
-                        {/* <Route path="/movie-editor"><MovieEditor/> </Route> */}
+                        <PrivateRoute exact path="/manage-game" isAuth>
+                            <GameList />
+                        </PrivateRoute>
+                        <PrivateRoute path="/manage-game/edit/:id" isAuth>
+                            <GameForm />
+                        </PrivateRoute>
+                        <PrivateRoute exact path="/manage-game/add" isAuth>
+                            <GameForm />
+                        </PrivateRoute>
                         <Route path="/login"><Login /></Route>
                     </Main>
                 </Route>
