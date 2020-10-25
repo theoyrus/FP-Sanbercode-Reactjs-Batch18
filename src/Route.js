@@ -35,6 +35,9 @@ const Routes = () => {
                         <PrivateRoute path="/manage-movie/edit/:id" isAuth>
                             <MovieForm />
                         </PrivateRoute>
+                        <PrivateRoute exact path="/manage-movie/add" isAuth>
+                            <MovieForm />
+                        </PrivateRoute>
                         {/* <Route path="/movie-editor"><MovieEditor/> </Route> */}
                         <Route path="/login"><Login /></Route>
                     </Main>

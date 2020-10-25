@@ -12,6 +12,7 @@ const { Option } = Select;
 
 const MovieEditor = () => {
     const recordKosong = {
+        id: null,
         description: 'desc', //string
         duration: 120, //integer
         genre: [], //string
@@ -30,6 +31,10 @@ const MovieEditor = () => {
     const [form] = Form.useForm();
 
     useEffect(() => {
+        if (id === undefined && record === null) {
+            console.log('add new')
+            getRecord(0)
+        }
         if (record === null) {
             getRecord(id)
         }
@@ -49,6 +54,7 @@ const MovieEditor = () => {
             })
             .catch(err => {
                 console.log(err.message)
+                setRecord(recordKosong)
             })
     }
 
