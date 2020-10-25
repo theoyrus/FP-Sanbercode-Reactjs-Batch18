@@ -25,7 +25,7 @@ const MovieEditor = () => {
     const [respon, setRespon] = useState(null);
     const [record, setRecord] = useState(null)
     const history = useHistory()
-    const [isLogin,] = useContext(AuthContext)
+    const [userData,] = useContext(AuthContext)
     const { id } = useParams()
     const [form] = Form.useForm();
 
@@ -56,7 +56,7 @@ const MovieEditor = () => {
         let recordData = values
         if (record.id === null) {
             // tambah
-            axios.post(`${API_URL}/movies`, recordData)
+            axios.post(`${API_URL}/${modulPath}`, recordData, { headers: { "Authorization": `Bearer ${userData.token}` } })
                 .then(res => {
                     openNotificationWithIcon('success', 'Success', 'Data success added')
                     setRecord(recordKosong)
@@ -67,7 +67,7 @@ const MovieEditor = () => {
                 })
         } else {
             // update
-            axios.put(`${API_URL}/movies/${record.id}`, recordData)
+            axios.put(`${API_URL}/${modulPath}/${record.id}`, recordData, { headers: { "Authorization": `Bearer ${userData.token}` } })
                 .then(res => {
                     openNotificationWithIcon('success', 'Success', 'Data success updated')
                     setRecord(recordKosong)

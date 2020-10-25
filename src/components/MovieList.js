@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { API_URL } from '../Config'
 
@@ -6,9 +6,11 @@ import { Table, Input, Button, Space } from 'antd';
 // import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons'
 import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../AuthContext';
 
 
 const MovieList = () => {
+    const [userData,] = useContext(AuthContext)
     const recordKosong = {
         description: '', //string
         duration: '', //integer
@@ -63,7 +65,7 @@ const MovieList = () => {
         let isHapus = window.confirm(`Apakah yakin akan menghapus movie ${movieNama}?`)
         if (isHapus) {
             setRecord(recordKosong)
-            axios.delete(`${API_URL}/${modulPath}/${id}`)
+            axios.delete(`${API_URL}/${modulPath}/${id}`, { headers: { "Authorization": `Bearer ${userData.token}` } })
                 .then(res => {
                     setModel(null)
                 })
