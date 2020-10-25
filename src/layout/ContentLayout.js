@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Layout, Breadcrumb } from 'antd';
 import { NavLink, withRouter } from 'react-router-dom';
-
+import { AuthContext } from '../AuthContext'
 
 const { Content } = Layout;
 
@@ -10,18 +10,37 @@ const titleCase = (str) => {
 }
 
 class ContentLayout extends Component {
+    state = {
+        auth: null,
+    }
+    static contextType = AuthContext
+
+    componentDidUpdate() {
+        const [auth,] = this.context
+        if (this.state.auth === null) {
+            this.setState({ auth })
+            console.log(auth)
+        }
+    }
+
     render() {
         // console.log(this.props)
         const { pathname } = this.props.location
         // const menuTitle = titleCase(pathname.replace('/', ''))
         const menuPath = '/' + pathname.split('/')[1]
-        const menuTitle = titleCase(pathname.split('/')[1])
-        const movie_title = pathname.split('/')[3]
+        let menuTitle = titleCase(pathname.split('/')[1])
+        menuTitle = menuTitle.split('-').join(' ')
+        let movie_title = pathname.split('/')[3]
+        let styleML = 0
+
+        const { auth } = this.state
+        styleML = (auth !== null && auth.hasOwnProperty('token')) ? '200px' : 0
+
         // const subMenuTitle = titleCase(pathname.split('/').join('')))
         return (
             <>
                 {/* <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}> */}
-                <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64, marginLeft: "200px" }}>
+                <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64, marginLeft: styleML }}>
                     <Breadcrumb style={{ margin: '16px 0' }}>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
                         <Breadcrumb.Item>

@@ -7,8 +7,9 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 const { Header } = Layout;
 const HeaderLayout = () => {
     // const { AppAuthContext } = useState(AppAuthContext)
-    const [isLogin, setAuth] = useContext(AuthContext)
-    // console.log(isLogin)
+    const [auth, setAuth] = useContext(AuthContext)
+    let isLogin = (auth !== null && auth !== '' && auth.hasOwnProperty('token')) ? true : false
+    console.log(isLogin)
 
     const location = useLocation()
     console.log(location)
@@ -36,9 +37,24 @@ const HeaderLayout = () => {
                     <Menu.Item key="/games">
                         <NavLink to="/games">Games</NavLink>
                     </Menu.Item>
-                    <Menu.Item key="/login">
-                        <NavLink to="/login">Login</NavLink>
-                    </Menu.Item>
+                    {
+                        isLogin && (
+                            <>
+                                <Menu.Item key="home">
+                                    <NavLink onClick={handleLogout} to="/">Logout</NavLink>
+                                </Menu.Item>
+                            </>
+                        )
+                    }
+                    {
+                        !isLogin && (
+                            <>
+                                <Menu.Item key="/login">
+                                    <NavLink to="/login">Login</NavLink>
+                                </Menu.Item>
+                            </>
+                        )
+                    }
                 </Menu>
             </Header>
         </>

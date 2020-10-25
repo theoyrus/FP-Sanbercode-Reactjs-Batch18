@@ -9,7 +9,7 @@ export const AuthProvider = (props) => {
         if (auth === null) {
             setAuth(false)
             if (localStorage.getItem('authData') !== null) {
-                setAuth(localStorage.getItem('authData'))
+                setAuth(JSON.parse(localStorage.getItem('authData')))
             }
         }
         console.log('Status login', auth)

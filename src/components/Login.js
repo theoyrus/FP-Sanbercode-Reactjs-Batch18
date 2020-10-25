@@ -12,31 +12,6 @@ import { API_URL } from '../Config'
 const { TabPane } = Tabs;
 
 const Login = () => {
-    const history = useHistory()
-    const [isLogin, setAuth] = useContext(AuthContext)
-    const [authData, setAuthData] = useState({ uname: '', passwd: '' })
-
-    const handleSubmit = (ev) => {
-        ev.preventDefault()
-        if (authData.uname !== '' && authData.passwd !== '') {
-            setAuth(authData)
-            // simpan state ke localstorage agar tidak hilang walau react diload ulang
-            localStorage.setItem('authData', JSON.stringify(authData))
-            history.push('/')
-        }
-    }
-
-    const [form] = Form.useForm();
-
-    const handleChange = (ev) => {
-        let { name, value } = ev.target
-        setAuthData({ ...authData, [name]: value })
-    }
-
-    const handleReset = () => {
-        setAuthData({ uname: '', passwd: '' })
-    }
-
     return (
         <>
             <Tabs defaultActiveKey="login" centered>
@@ -51,10 +26,6 @@ const Login = () => {
     )
 }
 
-const onFinish = values => {
-    console.log('Received values of form: ', values);
-};
-
 const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -67,14 +38,63 @@ const validateMessages = {
 };
 
 const LoginForm = (params) => {
+    const [respon, setRespon] = useState(null);
+    const history = useHistory()
+    const [, setAuthData] = useContext(AuthContext)
+
+    const doLogin = values => {
+        // console.log('Received values of form login: ', values);
+        let userData = values
+        // return false
+        axios.post(`${API_URL}/user-login`, userData)
+            .then(res => {
+                let authData = res.data
+                setAuthData(authData)
+                // simpan state ke localstorage agar tidak hilang walau react diload ulang
+                localStorage.setItem('authData', JSON.stringify(authData))
+                setRespon('success')
+                setTimeout(() => {
+                    history.push('/')
+                }, 2000)
+            })
+            .catch(err => {
+                setRespon('fail', err)
+            })
+    }
+
     return (
         <>
+        {
+            respon === 'success' && (
+                <Result
+                    status="success"
+                    title="Successfully Login"
+                    subTitle="Please wait :)"
+                    extra={[
+                        <>
+                        </>,
+                    ]}
+                />
+            )
+        }
+        {
+            respon === 'fail' && (
+                <Result
+                    status="warning"
+                    title="Please check your login data :("
+                    extra={[
+                        <>
+                        </>,
+                    ]}
+                />
+            )
+        }
             <Form
                 name="login-form"
                 className="login-form"
                 layout="vertical"
                 initialValues={{ key: true }}
-                onFinish={onFinish}
+                onFinish={doLogin}
                 style={{
                     margin: "0 auto",
                     width: "50%",
@@ -82,7 +102,7 @@ const LoginForm = (params) => {
                 validateMessages={validateMessages}
             >
                 <Form.Item
-                    name="username"
+                    name="email"
                     label="Email"
                     rules={[{
                         required: true,

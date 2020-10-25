@@ -11,7 +11,7 @@ import Movies from './components/Movies'
 import MovieDetail from './components/MovieDetail'
 import Games from './components/Games'
 import GameDetail from './components/GameDetail'
-// import MovieEditor from './components/MovieEditor'
+import MovieList from './components/MovieList'
 import Login from './components/Login'
 
 const Routes = () => {
@@ -28,6 +28,9 @@ const Routes = () => {
                         <Route path="/movie/:id/:title"><MovieDetail /></Route>
                         <Route exact path="/games"><Games /></Route>
                         <Route path="/game/:id/:name"><GameDetail /></Route>
+                        <PrivateRoute path="/manage-movie" isAuth>
+                            <MovieList />
+                        </PrivateRoute>
                         {/* <Route path="/movie-editor"><MovieEditor/> </Route> */}
                         <Route path="/login"><Login /></Route>
                     </Main>
@@ -36,6 +39,26 @@ const Routes = () => {
         </Router>
 
     )
+}
+
+const PrivateRoute = ({ children, isAuth, ...rest }) => {
+    return (
+        <Route
+            {...rest}
+            render={({ location }) =>
+                isAuth ? (
+                    children
+                ) : (
+                        <Redirect
+                            to={{
+                                pathname: "/login",
+                                state: { from: location }
+                            }}
+                        />
+                    )
+            }
+        />
+    );
 }
 
 export default Routes

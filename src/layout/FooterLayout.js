@@ -7,7 +7,7 @@ class FooterLayout extends Component {
     render() {
         return (
             <>
-                <Footer>
+                <Footer style={{ textAlign: "center" }}>
                     <h5>copyright &copy; 2020 by Suryo Prasetyo W</h5>
                 </Footer>
             </>
