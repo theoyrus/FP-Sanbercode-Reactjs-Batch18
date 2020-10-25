@@ -41,7 +41,9 @@ class Movies extends Component {
     }
 
     excerpt(str, length = 100) {
-        return str.substring(0, length)
+        if (str !== null) {
+            return str.substring(0, length)
+        }
     }
 
     render() {
